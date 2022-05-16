@@ -4,3 +4,5 @@ Import-Module posh-git
 
 Import-Module PSReadLine
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
+Set-PSReadlineKeyHandler -Key ctrl+d -Function ViExit
+Set-PSReadlineOption -BellStyle None
