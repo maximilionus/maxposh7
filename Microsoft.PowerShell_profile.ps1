@@ -3,3 +3,4 @@ oh-my-posh init pwsh --config ~/oh_my_posh/themes/bubblesextra.omp.json | Invoke
 Import-Module posh-git
 
 Import-Module PSReadLine
+Set-PSReadLineKeyHandler -Key Tab -Function Complete
