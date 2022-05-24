@@ -3,7 +3,7 @@ oh-my-posh init pwsh --config ~/oh_my_posh/themes/bubblesextra.omp.json | Invoke
 Import-Module posh-git
 
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
-Set-PSReadlineKeyHandler -Key ctrl+d -Function ViExit
+Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
 Set-PSReadlineOption -BellStyle None
 
 
