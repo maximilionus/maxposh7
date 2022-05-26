@@ -1,5 +1,6 @@
 oh-my-posh init pwsh --config ~/oh_my_posh/themes/bubblesextra.omp.json | Invoke-Expression
 
+Import-Module Terminal-Icons
 Import-Module posh-git
 
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
