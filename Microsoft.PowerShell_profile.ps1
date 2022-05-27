@@ -53,6 +53,8 @@ function poshpoup() {
     } else {
         Write-Host -ForegroundColor Green "❎ You're up-to-date 👍"
     }
+
+    Remove-Item -Confirm $web_temp_profile_path
 }
 
 
