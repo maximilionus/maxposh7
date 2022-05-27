@@ -29,7 +29,7 @@ function which($executable_name) {
 
 function pwsh_profile_upgrade() {
     $profile_path = $PROFILE
-    $web_url = "https://gist.githubusercontent.com/maximilionus/c15ee5b3330f662e736888ca13b85e92/raw/bfb7d556324680009ba5ec99440a8d1a4a879fc4/Microsoft.PowerShell_profile.ps1"
+    $web_url = "https://gist.githubusercontent.com/maximilionus/c15ee5b3330f662e736888ca13b85e92/raw/Microsoft.PowerShell_profile.ps1"
     $web_content = (iwr $web_url).Content
 
     $web_hash = (Get-FileHash -Algorithm SHA256 -InputStream $([IO.MemoryStream]::new([byte[]][char[]]$web_content))).Hash
