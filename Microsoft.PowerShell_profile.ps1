@@ -23,6 +23,10 @@ function vactiva () {
     Write-Output "Python Virtual Environment - Activated", $((get-command python.exe).Path)
 }
 
+function which($executable_name) {
+    Write-Host (Get-Command $executable_name).Path
+}
+
 
 # Alias
 Set-Alias ll ls
