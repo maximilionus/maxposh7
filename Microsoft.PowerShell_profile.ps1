@@ -45,7 +45,7 @@ function poshpoup() {
         $decision = $Host.UI.PromptForChoice('New updates for powershell profile detected', 'Install them?', ('&Yes', '&No'), 1)
         if ($decision -eq 0) {
             cpi -Force -Path $web_temp_profile_path -Destination $profile_path
-            Write-Host -ForegroundColor Green '✅ Powershell profile was successfully upgraded to latest version and reloaded'
+            Write-Host -ForegroundColor Green '✅ Powershell profile was successfully upgraded to latest version'
         } else {
             Write-Host -ForegroundColor Red '❌ Updating process was cancelled by user'
         }
