@@ -14,6 +14,13 @@ $DOWNLOADS = (New-Object -ComObject Shell.Application).NameSpace('shell:Download
 
 # Functions
 function vactiva () {
+    <#
+        .DESCRIPTION
+        Virtual environment manager for python in current directory. If '.venv' dir doesn't exist - creates it and activates the virtual environment for this shell.
+
+        .OUTPUTS
+        Command status and python path test
+    #>
     if ( -Not (Test-Path -Path ".venv") ) {
         virtualenv .venv
     }
@@ -24,11 +31,34 @@ function vactiva () {
 }
 
 function which($executable_name) {
+    <#
+        .DESCRIPTION
+        Implementation of unix 'which' command
+
+        .OUTPUTS
+        System.String. Path to executable
+    #>
     Write-Host (Get-Command $executable_name).Path
 }
 
+function video_convert_720(
+    [Parameter(Mandatory=$true)]$source_video_path
+) {
+    <#
+        .DESCRIPTION
+        Convert mp4 source video to 1280x720, 30 fps using ffmpeg x264 encoder. Result will be saved in the same directory with postfix "_720_30.mp4"
+
+        .PARAMETER source_video_path
+        Path to source video file that should be converted
+    #>
+    ffmpeg.exe -i $source_video_path -s 720x480 -filter:v fps=30 -c:v libx264 -c:a copy $($source_video_path + '_720_30.mp4')
+}
+
 function poshpoup() {
-    # Profile upgrader
+    <#
+        .DESCRIPTION
+        Updater for this powershell profile. Currently based on github-gist link. If any updates available - function will ask to install them. WARNING: Manual powershell profile reload required after updating - `PS> . $PROFILE`
+    #>
     $profile_path = $PROFILE
     $web_temp_profile_path = $env:TEMP + '\MXML_PowerShell_profile.temp.ps1'
     $web_url = "https://gist.githubusercontent.com/maximilionus/c15ee5b3330f662e736888ca13b85e92/raw/Microsoft.PowerShell_profile.ps1"
