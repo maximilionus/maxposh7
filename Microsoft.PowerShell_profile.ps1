@@ -61,7 +61,7 @@ function poshpoup() {
     #>
     $profile_path = $PROFILE
     $web_temp_profile_path = $env:TEMP + '\MXML_PowerShell_profile.temp.ps1'
-    $web_url = "https://gist.githubusercontent.com/maximilionus/c15ee5b3330f662e736888ca13b85e92/raw/Microsoft.PowerShell_profile.ps1"
+    $web_url = "https://github.com/maximilionus/maxposh7/raw/master/Microsoft.PowerShell_profile.ps1"
 
     # Save web version to temp dir
     iwr -Uri $web_url -OutFile $web_temp_profile_path
