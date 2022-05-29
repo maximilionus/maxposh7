@@ -51,7 +51,7 @@ function video_convert_720(
         .PARAMETER source_video_path
         Path to source video file that should be converted
     #>
-    ffmpeg.exe -i $source_video_path -s 720x480 -filter:v fps=30 -c:v libx264 -c:a copy $($source_video_path + '_720_30.mp4')
+    ffmpeg.exe -i $source_video_path -s 1280x720 -filter:v fps=30 -c:v libx264 -c:a copy $($source_video_path + '_720_30.mp4')
 }
 
 function poshpoup() {
