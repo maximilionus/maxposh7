@@ -21,6 +21,8 @@ function vactiva () {
         .OUTPUTS
         Command status and python path test
     #>
+    $ErrorActionPreference = "Stop"  # Stop the function on first encountered exception
+
     if ( -Not (Test-Path -Path ".venv") ) {
         virtualenv .venv
     }
@@ -30,7 +32,7 @@ function vactiva () {
     Write-Output "Python Virtual Environment - Activated", $((get-command python.exe).Path)
 }
 
-function which($executable_name) {
+function which([Parameter(Mandatory=$true)]$executable_name) {
     <#
         .DESCRIPTION
         Implementation of unix 'which' command
@@ -59,6 +61,7 @@ function poshpoup() {
         .DESCRIPTION
         Updater for this powershell profile. Currently based on github-gist link. If any updates available - function will ask to install them. WARNING: Manual powershell profile reload required after updating - `PS> . $PROFILE`
     #>
+    $ErrorActionPreference = "Stop"  # Stop the function on first encountered exception
     $profile_path = $PROFILE
     $web_temp_profile_path = $env:TEMP + '\MXML_PowerShell_profile.temp.ps1'
     $web_url = "https://github.com/maximilionus/maxposh7/raw/master/Microsoft.PowerShell_profile.ps1"
@@ -83,6 +86,7 @@ function poshpoup() {
         Write-Host -ForegroundColor Green "❎ You're up-to-date 👍"
     }
 
+    # Clean temp files
     Remove-Item -Force -Confirm:$false $web_temp_profile_path
 }
 
