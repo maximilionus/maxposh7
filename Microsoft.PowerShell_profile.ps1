@@ -74,7 +74,7 @@ function video_to_telegram_sticker(
 
     New-Item -ItemType Directory -Force -Path $edited_video_dir
 
-    ffmpeg -i $source_video_path -framerate 30 -c:v libvpx-vp9 -an -vf scale=512:512 -pix_fmt yuva420p -fs 256K $(Join-Path -Path $edited_video_dir -Child ($source_video_name + '_sticker.webm'))
+    ffmpeg -i $source_video_path -framerate 30 -c:v libvpx-vp9 -an -pix_fmt yuva420p -fs 256K $(Join-Path -Path $edited_video_dir -Child ($source_video_name + '_sticker.webm'))
 }
 
 function poshpoup() {
