@@ -56,6 +56,27 @@ function video_convert_720(
     ffmpeg.exe -i $source_video_path -s 1280x720 -filter:v fps=30 -c:v libx264 -crf 28 -c:a copy $($source_video_path + '_720_30.mp4')
 }
 
+function video_to_telegram_sticker(
+    [Parameter(Mandatory=$true)]$source_video_path
+) {
+    <#
+        .DESCRIPTION
+        Convert any video to telegram video sticker (.webm-vp9-30fps-512px)
+
+        .PARAMETER source_video_path
+        Path to source video file that should be converted
+    #>
+    $ErrorActionPreference = "Stop"
+
+    $source_video_dir = Split-Path $source_video_path -Parent
+    $source_video_name = Split-Path $source_video_path -Leaf
+    $edited_video_dir = Join-Path -Path $source_video_dir -Child "converted_webm\"
+
+    New-Item -ItemType Directory -Force -Path $edited_video_dir
+
+    ffmpeg -i $source_video_path -framerate 30 -c:v libvpx-vp9 -an -vf scale=512:512 -pix_fmt yuva420p $(Join-Path -Path $edited_video_dir -Child ($source_video_name + '_sticker.webm'))
+}
+
 function poshpoup() {
     <#
         .DESCRIPTION
