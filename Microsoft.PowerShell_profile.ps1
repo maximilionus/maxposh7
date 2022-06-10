@@ -77,6 +77,21 @@ function video_to_telegram_sticker(
     ffmpeg -i $source_video_path -framerate 30 -c:v libvpx-vp9 -an -pix_fmt yuva420p -fs 256K $(Join-Path -Path $edited_video_dir -Child ($source_video_name + '_sticker.webm'))
 }
 
+function rmrf(
+    [Parameter(Mandatory=$true)]$files_to_remove
+) {
+    <#
+        .DESCRIPTION
+        Unix-style 'rm -rf' command implementation
+
+        .PARAMETER files_to_remove
+        Files to be removed, separated by 'space'
+    #>
+    foreach($file in $files_to_remove) {
+        Remove-Item -Verbose -Recurse -Force -Confirm:$false -Path $file
+    }
+}
+
 function poshpoup() {
     <#
         .DESCRIPTION
