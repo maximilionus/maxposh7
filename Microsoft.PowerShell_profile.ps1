@@ -44,7 +44,8 @@ function which([Parameter(Mandatory=$true)]$executable_name) {
 }
 
 function video_convert_720(
-    [Parameter(Mandatory=$true)]$source_video_path
+    [Parameter(Mandatory=$true)]$source_video_path,
+    [String]$additional_args
 ) {
     <#
         .DESCRIPTION
@@ -53,7 +54,10 @@ function video_convert_720(
         .PARAMETER source_video_path
         Path to source video file that should be converted
     #>
-    ffmpeg.exe -i $source_video_path -s 1280x720 -filter:v fps=30 -c:v libx264 -crf 28 -c:a copy $($source_video_path + '_720_30.mp4')
+    $command = "-i $source_video_path -s 1280x720 -filter:v fps=30 -c:v libx264 -crf 28 -c:a copy $additional_args $($source_video_path + '_720_30.mp4')".Split(' ')
+
+    Write-Host $command
+    ffmpeg.exe $command
 }
 
 function video_to_telegram_sticker(
