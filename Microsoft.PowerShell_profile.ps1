@@ -140,7 +140,7 @@ function poshpoup() {
 
     # Upgrade procedure
     if ( $temp_hash -ne $installed_hash ) {
-        $decision = $Host.UI.PromptForChoice('New updates for powershell profile detected', 'Install them?', ('&Yes', '&No'), 1)
+        $decision = $Host.UI.PromptForChoice('🔃 New updates for this PowerShell profile detected', '❓ Install them?', ('✔️ &Yes', '❌ &No'), 1)
         if ($decision -eq 0) {
             cpi -Force -Path $web_temp_profile_path -Destination $profile_path
             Write-Host -ForegroundColor Green '✅ Powershell profile was successfully upgraded to latest version. To activate the latest changes, you should restart the shell or run "PS> . $PROFILE"'
