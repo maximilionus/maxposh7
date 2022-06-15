@@ -43,7 +43,7 @@ function which([Parameter(Mandatory=$true)]$executable_name) {
     Write-Host (Get-Command $executable_name).Path
 }
 
-function video_rescale(
+function video-rescale(
     [Parameter(Mandatory=$true)][String]$source_video_path,
     [String]$desired_resolution = "1280x720",
     [String]$desired_framerate = "30",
@@ -87,7 +87,7 @@ function video_rescale(
     ffmpeg.exe -i $source_video_path $ffmpeg_params $output_path
 }
 
-function video_to_telegram_sticker(
+function video-to-telegram-sticker(
     [Parameter(Mandatory=$true)]$source_video_path
 ) {
     <#
