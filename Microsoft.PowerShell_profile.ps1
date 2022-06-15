@@ -73,16 +73,18 @@ function video_rescale(
         .PARAMETER additional_args
         Additional arguments to be passed to ffmpeg command call
     #>
+    $output_path = $source_video_path + '_' + $desired_resolution + '_' + $desired_framerate + '.mp4'
+
     if ($volume_multiplier -eq "1") {
-        $audio_args = "-c:a copy"
+        $audio_args = "-c:a", "copy"
     } else {
-        $audio_args = '-c:a aac -filter:a "volume=' + $volume_multiplier + '"'
+        $audio_args = "-c:a", "aac", "-filter:a", "volume=$volume_multiplier"
     }
 
-    $output_name = $source_video_path + '_' + $desired_resolution + '_' + $desired_framerate + '.mp4'
-    $command = "-i $source_video_path -s $desired_resolution -filter:v fps=$desired_framerate -c:v libx264 -crf $desired_quality $audio_args $additional_args $output_name".Split(' ')
+    $ffmpeg_params = "-s", $desired_resolution, "-filter:v", "fps=$desired_framerate", "-c:v", "libx264", "-crf", $desired_quality
+    $ffmpeg_params += $audio_args
 
-    ffmpeg.exe $command
+    ffmpeg.exe -i $source_video_path $ffmpeg_params $output_path
 }
 
 function video_to_telegram_sticker(
