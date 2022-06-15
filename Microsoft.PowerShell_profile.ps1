@@ -82,7 +82,7 @@ function video-rescale(
     }
 
     $ffmpeg_params = "-s", $desired_resolution, "-filter:v", "fps=$desired_framerate", "-c:v", "libx264", "-crf", $desired_quality
-    $ffmpeg_params += $audio_args
+    $ffmpeg_params += $audio_args += $additional_args.Split(' ')
 
     ffmpeg.exe -i $source_video_path $ffmpeg_params $output_path
 }
