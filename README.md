@@ -13,3 +13,4 @@ My personal **Microsoft Powershell 7** profile with special things in it
 
 ### Themes
 - [BubblesExtra](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/bubblesextra.omp.json)
+  > Should be placed in `~/.oh-my-posh/themes/` directory
